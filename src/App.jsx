@@ -5,8 +5,8 @@ import TestCheckBox from './TestCheckBox'
 function App() {
   return (
     <div>
-      <NestedCheckBox />
-      {/* <TestCheckBox /> */}
+      {/* <NestedCheckBox /> */}
+      <TestCheckBox />
     </div>
   )
 }

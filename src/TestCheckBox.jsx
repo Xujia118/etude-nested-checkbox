@@ -4,8 +4,11 @@ function TestCheckBox() {
   const [isChecked, setIsChecked] = useState(false);
 
   function handleChange() {
-    setIsChecked((prev) => !prev); // Use `prev` to toggle the state
-    console.log("status:", !isChecked); // Log the new state
+    setIsChecked((prev) => {
+      const newChecked = !prev;
+      console.log("status:", newChecked);
+      return newChecked;
+    });
   }
 
   return (
