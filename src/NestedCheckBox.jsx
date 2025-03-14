@@ -3,6 +3,7 @@ import options from "./data";
 
 const NestedCheckBox = () => {
   const [selected, setSelected] = useState({});
+  const [selectAll, setSelectAll] = useState(false);
 
   // Function to toggle selection for a node and its children
   const toggleSelection = (items, isSelected, newSelected) => {
@@ -68,6 +69,17 @@ const NestedCheckBox = () => {
     });
   };
 
+  const handleSelectAll = () => {
+    setSelectAll((prev) => !prev);
+    setSelected((prevSelected) => {
+      const newSelected = {};
+      if (!selectAll) {
+        toggleSelection(options, true, newSelected);
+      }
+      return newSelected;
+    });
+  };
+
   const renderCheckboxes = (items, parentValue = null) => {
     return (
       <ul style={{ listStyleType: "none", paddingLeft: "20px" }}>
@@ -95,6 +107,7 @@ const NestedCheckBox = () => {
   return (
     <div>
       <h3>Nested Checkbox List</h3>
+      <button onClick={handleSelectAll}>{selectAll ? "Deselect All" : "Select All"}</button>
       {renderCheckboxes(options)}
       <pre>{JSON.stringify(selected, null, 2)}</pre>
     </div>
